@@ -21,11 +21,9 @@ trait PasswordLessAuth
      */
     protected function validateLogin(Request $request)
     {
-        $messages = ['exists' => trans('auth.exists')];
+        $messages = ['email_not_exist' => trans('auth.email_not_exist')];
 
-        $this->validate($request, [
-            $this->username() => 'required|email|exists:users',
-        ], $messages);
+        $this->validate($request, [  $this->username() => 'required|email|email_not_exist:users' ], $messages);
     }
 
     /**
